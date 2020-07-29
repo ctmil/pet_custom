@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record model="ir.ui.view" id="pet_product_pricelist_item_search">
+		<field name="name">pet.product.pricelist.item.view.search</field>
+		<field name="model">product.pricelist.item</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="pricelist_id" />
+				<field name="product_tmpl_id" />
+				<field name="product_id" />
+			</search>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="pet_product_pricelist_item_tree">
+		<field name="name">pet.product.pricelist.item.view.tree</field>
+		<field name="model">product.pricelist.item</field>
+		<field name="inherit_id" ref="product.product_pricelist_item_tree_view"></field>
+		<field name="arch" type="xml">
+			<field name="company_id" position="after">
+				<field name="product_tmpl_id" optional="hide"/>
+				<field name="product_id" optional="hide"/>
+				<field name="fixed_price" optional="hide"/>
+				<field name="active" optional="hide"/>
+			</field>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="action_product_pricelist_items">
+		<field name="name">Items de Tarifas</field>
+		<field name="res_model">product.pricelist.item</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Items de Tarifas" id="product_pricelist_items_menu"
+		parent="sale.product_menu_catalog"
+		action="action_product_pricelist_items"
+		sequence="4"/>
+
+</odoo>
